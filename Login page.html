@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Login with OTP</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        h2 { text-align: center; }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background: #0066ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #004ecc;
+        }
+
+        #otpSection { display: none; }
+        #showOtp {
+            color: green;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Login</h2>
+
+    <label>Phone Number</label>
+    <input type="text" id="phone" placeholder="Enter phone number">
+
+    <button onclick="sendOTP()">Get OTP</button>
+
+    <div id="showOtp"></div>
+
+    <div id="otpSection">
+        <label>Enter OTP</label>
+        <input type="number" id="otp" placeholder="Enter OTP">
+
+        <button onclick="verifyOTP()">Login</button>
+    </div>
+</div>
+
+<script>
+    let generatedOTP = "";
+
+    function sendOTP() {
+        const phone = document.getElementById("phone").value;
+
+        if (!phone) {
+            alert("Please enter your phone number.");
+            return;
+        }
+
+        generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+        document.getElementById("showOtp").innerHTML = "Your OTP is: " + generatedOTP;
+        document.getElementById("otpSection").style.display = "block";
+    }
+
+    function verifyOTP() {
+        const userOtp = document.getElementById("otp").value;
+
+        if (userOtp === generatedOTP) {
+            alert("Login Successful!");
+            window.location.href = "index.html";
+        } else {
+            alert("Incorrect OTP");
+        }
+    }
+</script>
+
+</body>
+</html>
