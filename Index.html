@@ -2,142 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Wash Appointment</title>
+    <title>Car Wash Home</title>
+
     <style>
         body {
+            margin: 0;
+            padding: 0;
+
+            /* 🔵 Background Car Image */
+            background: url('https://wallpapercave.com/wp/wp8664319.jpg') no-repeat center center/cover;
+
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        h2 { text-align: center; }
-        label { font-weight: bold; }
-        input, select, textarea {
+
+        /* Dark overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.55);
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
             width: 100%;
-            padding: 10px;
-            margin: 8px 0 20px 0;
-            border-radius: 5px;
-            border: 1px solid #aaa;
         }
-        button {
+
+        /* Navigation bar */
+        .navbar {
             width: 100%;
-            padding: 12px;
-            background: #007bff;
+            padding: 20px 40px;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
-        button:hover { background: #0056b3; }
-        .summary-box {
-            background: #e8f4ff;
-            padding: 15px;
-            margin-top: 20px;
-            display: none;
-            border-radius: 7px;
+
+        .navbar a {
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #0d6efd;
+        }
+
+        /* Main content */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: #0d6efd;
+            padding: 15px 35px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0b5ed7;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Car Wash Appointment Form</h2>
+    <div class="overlay"></div>
 
-    <form id="appointmentForm">
+    <div class="navbar">
+        <h2>🚗 CleanRide Car Wash</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Register</a>
+            <a href="#">Login</a>
+            <a href="#">Book Appointment</a>
+        </div>
+    </div>
 
-        <!-- Customer Info -->
-        <label>Customer Name</label>
-        <input type="text" id="name" required>
+    <div class="content">
+        <h1>Premium Car Wash Service</h1>
+        <p>Fast • Affordable • Professional • 24/7 Online Booking</p>
+        <a class="btn" onclick="bookNow()">Book Now</a>
+    </div>
 
-        <label>Phone Number</label>
-        <input type="text" id="phone" required>
-
-        <label>Email</label>
-        <input type="email" id="email" required>
-
-        <!-- Address -->
-        <label>Address</label>
-        <textarea id="address" required></textarea>
-
-        <!-- Vehicle Info -->
-        <label>Vehicle Make</label>
-        <input type="text" id="make" required>
-
-        <label>Vehicle Model</label>
-        <input type="text" id="model" required>
-
-        <label>Vehicle Year</label>
-        <input type="number" id="year" required>
-
-        <!-- Service Selection -->
-        <label>Choose Your Service</label>
-        <select id="service" required>
-            <option value="">Select Service</option>
-            <option value="Basic Wash">Basic Wash - $15</option>
-            <option value="Premium Wash">Premium Wash - $25</option>
-            <option value="Detailing">Detailing - $50</option>
-            <option value="Interior Cleaning">Interior Cleaning - $30</option>
-        </select>
-
-        <!-- Appointment -->
-        <label>Choose Appointment Date</label>
-        <input type="date" id="date" required>
-
-        <label>Choose Appointment Time</label>
-        <input type="time" id="time" required>
-
-        <button type="button" onclick="submitForm()">Submit Appointment</button>
-    </form>
-
-    <!-- Summary -->
-    <div id="summary" class="summary-box"></div>
-</div>
-
-<script>
-    function submitForm() {
-        // Get values
-        let name = document.getElementById("name").value;
-        let phone = document.getElementById("phone").value;
-        let email = document.getElementById("email").value;
-        let address = document.getElementById("address").value;
-        let make = document.getElementById("make").value;
-        let model = document.getElementById("model").value;
-        let year = document.getElementById("year").value;
-        let service = document.getElementById("service").value;
-        let date = document.getElementById("date").value;
-        let time = document.getElementById("time").value;
-
-        // Validate
-        if (!name || !phone || !email || !address || !make || !model || !year || !service || !date || !time) {
-            alert("Please fill out all fields.");
-            return;
+    <script>
+        function bookNow() {
+            alert("Redirecting to Appointment Booking Page...");
+            window.location.href = "appointment.html"; 
         }
-
-        // Display Summary
-        let summaryDiv = document.getElementById("summary");
-        summaryDiv.style.display = "block";
-        summaryDiv.innerHTML = `
-            <h3>Appointment Summary</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Address:</strong> ${address}</p>
-            <p><strong>Vehicle:</strong> ${year} ${make} ${model}</p>
-            <p><strong>Service Selected:</strong> ${service}</p>
-            <p><strong>Appointment:</strong> ${date} at ${time}</p>
-            <p style="color:green; font-weight:bold;">Your appointment has been submitted!</p>
-        `;
-    }
-</script>
+    </script>
 
 </body>
 </html>
