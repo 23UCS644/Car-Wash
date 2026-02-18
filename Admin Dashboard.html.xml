@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Wash Admin | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen">
+        <aside class="w-64 bg-indigo-900 text-white flex-shrink-0 hidden md:flex flex-col">
+            <div class="p-6 text-2xl font-bold border-b border-indigo-800">🧽 SparkleWash</div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="#" class="block py-2.5 px-4 rounded bg-indigo-700 transition">Dashboard</a>
+                <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-800 transition">Washing Points</a>
+                <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-800 transition">All Bookings</a>
+                <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-800 transition">Enquiries</a>
+                <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-800 transition">Registered Users</a>
+            </nav>
+            <div class="p-4 border-t border-indigo-800 text-sm text-indigo-300">Admin Panel v1.0</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <h1 class="text-xl font-semibold text-gray-800">Admin Overview</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Welcome, <strong>Admin</strong></span>
+                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
+                </div>
+            </header>
+
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                        <div class="text-sm font-medium text-gray-500 uppercase">Total Bookings</div>
+                        <div class="text-3xl font-bold text-gray-800">1,284</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-500">
+                        <div class="text-sm font-medium text-gray-500 uppercase">New Bookings</div>
+                        <div class="text-3xl font-bold text-gray-800">12</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
+                        <div class="text-sm font-medium text-gray-500 uppercase">Completed</div>
+                        <div class="text-3xl font-bold text-gray-800">1,240</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-500">
+                        <div class="text-sm font-medium text-gray-500 uppercase">Enquiries</div>
+                        <div class="text-3xl font-bold text-gray-800">5</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                        <h2 class="text-lg font-bold text-gray-800">Recent Online Registrations</h2>
+                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700">View All</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50 text-gray-600 uppercase text-xs">
+                                <tr>
+                                    <th class="px-6 py-4 font-semibold">Customer</th>
+                                    <th class="px-6 py-4 font-semibold">Wash Point</th>
+                                    <th class="px-6 py-4 font-semibold">Vehicle</th>
+                                    <th class="px-6 py-4 font-semibold">Date</th>
+                                    <th class="px-6 py-4 font-semibold">Status</th>
+                                    <th class="px-6 py-4 font-semibold text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-indigo-600">Alex Johnson</td>
+                                    <td class="px-6 py-4">Main Bay 01</td>
+                                    <td class="px-6 py-4 text-sm">Tesla Model 3 (TX-202)</td>
+                                    <td class="px-6 py-4 text-sm">Oct 24, 10:30 AM</td>
+                                    <td class="px-6 py-4"><span class="bg-yellow-100 text-yellow-700 py-1 px-3 rounded-full text-xs">Pending</span></td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-blue-500 hover:text-blue-700 mr-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-indigo-600">Sarah Miller</td>
+                                    <td class="px-6 py-4">East Side Point</td>
+                                    <td class="px-6 py-4 text-sm">Ford F-150 (CA-998)</td>
+                                    <td class="px-6 py-4 text-sm">Oct 24, 09:15 AM</td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-700 py-1 px-3 rounded-full text-xs">Completed</span></td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-blue-500 hover:text-blue-700 mr-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
