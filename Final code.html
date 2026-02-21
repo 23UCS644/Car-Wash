@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkleWash | Car Wash Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans">
+
+    <div id="homePage" class="page active">
+        <nav class="bg-white shadow-sm p-5 flex justify-between items-center px-10">
+            <h1 class="text-2xl font-bold text-indigo-600"><i class="fas fa-soap mr-2"></i>SparkleWash</h1>
+            <div class="space-x-6">
+                <button onclick="showPage('loginPage')" class="text-gray-600 font-semibold hover:text-indigo-600">Login</button>
+                <button onclick="showPage('registerPage')" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition">Register</button>
+            </div>
+        </nav>
+        <header class="flex flex-col items-center justify-center text-center py-32 px-4">
+            <h2 class="text-6xl font-black text-slate-800 mb-6 leading-tight">Professional Car Care <br><span class="text-indigo-600">Made Simple.</span></h2>
+            <p class="text-gray-500 text-xl max-w-2xl mb-10">Experience the easiest way to book a car wash. Online registration, instant appointments, and real-time tracking.</p>
+            <div class="flex gap-4">
+                <button onclick="showPage('registerPage')" class="bg-indigo-600 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-xl hover:scale-105 transition">Book Your Wash Now</button>
+                <button onclick="showPage('adminPage')" class="bg-slate-800 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-xl hover:scale-105 transition">Admin Demo</button>
+            </div>
+        </header>
+    </div>
+
+    <div id="registerPage" class="page min-h-screen flex items-center justify-center bg-indigo-50">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
+            <button onclick="showPage('homePage')" class="text-indigo-600 mb-4 inline-block"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Join Us</h2>
+            <p class="text-gray-500 mb-8">Create an account for faster booking.</p>
+            <form id="registerForm" class="space-y-4">
+                <input type="text" id="regName" placeholder="Full Name" required class="w-full p-4 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <input type="text" id="regVehicle" placeholder="Vehicle Number" required class="w-full p-4 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <input type="email" id="regEmail" placeholder="Email" required class="w-full p-4 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <input type="password" id="regPass" placeholder="Password" required class="w-full p-4 bg-gray-50 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transition">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loginPage" class="page min-h-screen flex items-center justify-center bg-indigo-900">
+        <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-sm text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
+            <p class="text-gray-500 mb-8">Login to manage your bookings</p>
+            <form id="loginForm" class="space-y-4 text-left">
+                <input type="email" id="logEmail" placeholder="Email" required class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <input type="password" id="logPass" placeholder="Password" required class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none">
+                <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold shadow-lg">Sign In</button>
+            </form>
+            <button onclick="showPage('homePage')" class="mt-6 text-sm text-gray-400 hover:text-indigo-600">Cancel and Return Home</button>
+        </div>
+    </div>
+
+    <div id="adminPage" class="page min-h-screen flex">
+        <aside class="w-64 bg-slate-900 text-white p-6 flex flex-col">
+            <h2 class="text-2xl font-bold text-indigo-400 mb-10"><i class="fas fa-user-shield mr-2"></i>Admin</h2>
+            <nav class="space-y-4 flex-1">
+                <a href="#" class="block p-3 rounded bg-indigo-600"><i class="fas fa-chart-line mr-3"></i>Dashboard</a>
+                <a href="#" class="block p-3 rounded hover:bg-slate-800"><i class="fas fa-calendar-check mr-3"></i>Bookings</a>
+            </nav>
+            <button onclick="showPage('homePage')" class="mt-auto p-3 text-red-400 hover:text-red-300 border border-red-900 rounded"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+        </aside>
+
+        <main class="flex-1 p-10 overflow-y-auto">
+            <div class="flex justify-between items-center mb-10">
+                <h1 class="text-3xl font-bold text-slate-800">Car Wash Dashboard</h1>
+                <div id="currentDate" class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg font-bold"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500">
+                    <p class="text-gray-400 text-xs font-bold uppercase">Total Bookings</p>
+                    <p id="statTotal" class="text-3xl font-black text-slate-800">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-yellow-500">
+                    <p class="text-gray-400 text-xs font-bold uppercase">New Today</p>
+                    <p id="statNew" class="text-3xl font-black text-yellow-600">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500">
+                    <p class="text-gray-400 text-xs font-bold uppercase">Active Points</p>
+                    <p class="text-3xl font-black text-green-600">04</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm">
+                <h3 class="text-lg font-bold mb-6 text-slate-700"><i class="fas fa-clock mr-2 text-indigo-600"></i> Recent Online Appointments</h3>
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-xs text-gray-400 border-b">
+                            <th class="pb-3">CUSTOMER NAME</th>
+                            <th class="pb-3">VEHICLE</th>
+                            <th class="pb-3">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingTableBody" class="text-sm">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- BACKEND LOGIC (Local Storage) ---
+        
+        // Load data on start
+        let bookings = JSON.parse(localStorage.getItem('sparkle_bookings')) || [];
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if(pageId === 'adminPage') renderAdmin();
+        }
+
+        // 1. Handle Registration
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newBooking = {
+                name: document.getElementById('regName').value,
+                vehicle: document.getElementById('regVehicle').value,
+                email: document.getElementById('regEmail').value,
+                pass: document.getElementById('regPass').value,
+                status: 'Pending',
+                id: Date.now()
+            };
+
+            bookings.push(newBooking);
+            localStorage.setItem('sparkle_bookings', JSON.stringify(bookings));
+            
+            alert('Account Created & Appointment Booked!');
+            showPage('loginPage');
+            e.target.reset();
+        });
+
+        // 2. Handle Login
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('logEmail').value;
+            const pass = document.getElementById('logPass').value;
+
+            const user = bookings.find(b => b.email === email && b.pass === pass);
+            
+            if(user || (email === "admin@sparkle.com" && pass === "admin")) {
+                showPage('adminPage');
+            } else {
+                alert('Invalid Credentials!');
+            }
+        });
+
+        // 3. Render Admin Dashboard
+        function renderAdmin() {
+            const tbody = document.getElementById('bookingTableBody');
+            const totalText = document.getElementById('statTotal');
+            const newText = document.getElementById('statNew');
+            
+            tbody.innerHTML = '';
+            
+            bookings.slice().reverse().forEach(b => {
+                tbody.innerHTML += `
+                    <tr class="border-b last:border-0">
+                        <td class="py-4 font-bold text-slate-700">${b.name}</td>
+                        <td class="py-4 text-gray-500">${b.vehicle}</td>
+                        <td class="py-4"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">${b.status}</span></td>
+                    </tr>
+                `;
+            });
+
+            totalText.innerText = bookings.length;
+            newText.innerText = bookings.length > 0 ? '1' : '0';
+        }
+
+        // Set Date
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    </script>
+</body>
+</html>
